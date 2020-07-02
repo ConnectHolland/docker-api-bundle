@@ -1,0 +1,20 @@
+parameters:
+
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+        public: false
+
+    ConnectHolland\DockerHubApiBundle\LoginPlugin:
+        arguments:
+            $username: '%env(default:dockerhubapi.username:DOCKER_HUB_API_USERNAME)%'
+            $token: '%env(default:dockerhubapi.token:DOCKER_HUB_API_TOKEN)%'
+
+    ConnectHolland\DockerHubApiBundle\Api\Client:
+        public: true
+        lazy: true
+        factory: [ConnectHolland\DockerHubApiBundle\Api\Client, create]
+        arguments:
+            $httpClient: ~
+            $additionalPlugins: ['@ConnectHolland\DockerHubApiBundle\LoginPlugin']

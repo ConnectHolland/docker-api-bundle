@@ -1,0 +1,227 @@
+openapi: "3.0.0"
+info:
+  version: 2.0.0
+  title: Docker Hub API
+  description: A sample API that uses a petstore as an example to demonstrate features in the OpenAPI 3.0 specification
+  termsOfService: http://swagger.io/terms/
+servers:
+  - url: https://hub.docker.com/v2/
+paths:
+  /search/repositories:
+    get:
+      description: |
+        Returns all repositories from the system that the user has access to.
+      operationId: findRepositories
+      parameters:
+        - name: query
+          in: query
+          description: query to filter by
+          required: true
+          style: form
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: page to return
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page_size
+          in: query
+          description: maximum number of results to return
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        '200':
+          description: repository response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RepositorySearchResults'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /repositories/{user}:
+    get:
+      description: |
+        Returns all repositories from the system that the user has access to.
+      operationId: getRepositories
+      parameters:
+        - name: user
+          in: path
+          description: User of the repositories to fetch
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: page to return
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+        - name: page_size
+          in: query
+          description: maximum number of results to return
+          required: false
+          schema:
+            type: integer
+            format: int32
+            nullable: true
+      responses:
+        '200':
+          description: repository response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfRepositories'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /repositories/{user}/{name}:
+    get:
+      description: Returns a repository based on the name
+      operationId: getRepository
+      parameters:
+        - name: user
+          in: path
+          description: User of the repository to fetch
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          description: Name of the repository to fetch
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: repository response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Repository'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    RepositorySearchResults:
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/RepositorySearch'
+
+    RepositorySearch:
+      type: object
+      required:
+        - repo_name
+      properties:
+        repo_name:
+          type: string
+        short_description:
+          type: string
+        star_count:
+          type: integer
+          format: int64
+        pull_count:
+          type: integer
+          format: int64
+        repo_owner:
+          type: string
+        last_updated:
+          type: string
+          format: 'date-time'
+          nullable: true
+        is_automated:
+          type: boolean
+        is_official:
+          type: boolean
+
+    ArrayOfRepositories:
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Repository'
+
+    Repository:
+      type: object
+      required:
+        - user
+        - name
+      properties:
+        user:
+          type: string
+        name:
+          type: string
+        namespace:
+          type: string
+        repository_type:
+          type: string
+        status:
+          type: integer
+          format: int64
+        description:
+          type: string
+          nullable: true
+        is_private:
+          type: boolean
+        is_automated:
+          type: boolean
+        can_edit:
+          type: boolean
+        star_count:
+          type: integer
+          format: int64
+        pull_count:
+          type: integer
+          format: int64
+        last_updated:
+          type: string
+          format: 'date-time'
+          nullable: true
+        is_migrated:
+          type: boolean
+        has_starred:
+          type: boolean
+        full_description:
+          type: string
+          nullable: true
+        affiliation:
+          type: string
+          nullable: true
+        permissions:
+          type: object
+          properties:
+            read:
+              type: boolean
+            write:
+              type: boolean
+            admin:
+              type: boolean
+
+    Error:
+      type: object
+      required:
+        - detail
+      properties:
+        detail:
+          type: string
