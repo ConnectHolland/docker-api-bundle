@@ -6,6 +6,9 @@
 
 Docker API bundle to connect to hub.docker.com/v2/ and registry-1.docker.io/v2/ for Symfony 4/5 projects
 
+## Incomplete warning
+The API support is currently incomplete, see [contributing](CONTRIBUTING.md) for info on how to help make the API support complete. 
+
 ## Installation
 ```bash
 composer require connectholland/docker-api-bundle
