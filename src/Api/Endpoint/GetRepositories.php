@@ -80,6 +80,6 @@ class GetRepositories extends \Jane\OpenApiRuntime\Client\BaseEndpoint implement
 
     public function getAuthenticationScopes(): array
     {
-        return [];
+        return ['hubAuth'];
     }
 }

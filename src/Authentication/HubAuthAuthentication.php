@@ -7,16 +7,18 @@ declare(strict_types=1);
  * (c) Connect Holland.
  */
 
-namespace ConnectHolland\DockerHubApiBundle;
+namespace ConnectHolland\DockerHubApiBundle\Authentication;
 
-use Http\Client\Common\Plugin;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
+use Jane\OpenApiRuntime\Client\AuthenticationPlugin;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
 
-final class LoginPlugin implements Plugin
+class HubAuthAuthentication implements AuthenticationPlugin
 {
+    private const LOGIN_URI = 'https://hub.docker.com/v2/users/login/';
+
     /**
      * @var string
      */
@@ -39,11 +41,12 @@ final class LoginPlugin implements Plugin
         $this->httpClient = $httpClient ?? Psr18ClientDiscovery::find();
     }
 
-    public function handleRequest(RequestInterface $request, callable $next, callable $first): \Http\Promise\Promise
+    public function authentication(RequestInterface $request): RequestInterface
     {
         static $token = null;
+
         if (is_null($token)) {
-            $authRequest = Psr17FactoryDiscovery::findRequestFactory()->createRequest('POST', 'https://hub.docker.com/v2/users/login/');
+            $authRequest = Psr17FactoryDiscovery::findRequestFactory()->createRequest('POST', self::LOGIN_URI);
             $authBody    = Psr17FactoryDiscovery::findStreamFactory()->createStream(sprintf('{"username": "%s", "password": "%s"}', $this->username, $this->token));
 
             $authRequest   = $authRequest->withBody($authBody)->withHeader('Content-Type', 'application/json');
@@ -54,6 +57,11 @@ final class LoginPlugin implements Plugin
             $token = json_decode($tokenResponse->getBody()->getContents(), true)['token'];
         }
 
-        return $next($request->withHeader('Authorization', sprintf('JWT %s', $token)));
+        return $request->withHeader('Authorization', sprintf('JWT %s', $token));
+    }
+
+    public function getScope(): string
+    {
+        return 'hubAuth';
     }
 }

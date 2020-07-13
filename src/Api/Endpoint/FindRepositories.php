@@ -78,6 +78,6 @@ class FindRepositories extends \Jane\OpenApiRuntime\Client\BaseEndpoint implemen
 
     public function getAuthenticationScopes(): array
     {
-        return [];
+        return ['hubAuth'];
     }
 }

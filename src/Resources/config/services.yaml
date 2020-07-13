@@ -6,7 +6,21 @@ services:
         autoconfigure: false
         public: false
 
-    ConnectHolland\DockerHubApiBundle\LoginPlugin:
+    dockerhubapi.authentication_registry:
+        class: 'Jane\OpenApiRuntime\Client\Plugin\AuthenticationRegistry'
+        arguments:
+            $authenticationPlugins:
+                - '@ConnectHolland\DockerHubApiBundle\Authentication\HubAuthAuthentication'
+                - '@ConnectHolland\DockerHubApiBundle\Authentication\RegistryAuthAuthentication'
+
+    ConnectHolland\DockerHubApiBundle\Authentication\HubAuthAuthentication:
+        arguments:
+            $username: '%env(default:dockerhubapi.username:DOCKER_HUB_API_USERNAME)%'
+            $token: '%env(default:dockerhubapi.token:DOCKER_HUB_API_TOKEN)%'
+
+    ConnectHolland\DockerHubApiBundle\Plugins\FixManifestResponseContentTypePlugin: ~
+
+    ConnectHolland\DockerHubApiBundle\Authentication\RegistryAuthAuthentication:
         arguments:
             $username: '%env(default:dockerhubapi.username:DOCKER_HUB_API_USERNAME)%'
             $token: '%env(default:dockerhubapi.token:DOCKER_HUB_API_TOKEN)%'
@@ -17,4 +31,4 @@ services:
         factory: [ConnectHolland\DockerHubApiBundle\Api\Client, create]
         arguments:
             $httpClient: ~
-            $additionalPlugins: ['@ConnectHolland\DockerHubApiBundle\LoginPlugin']
+            $additionalPlugins: ['@dockerhubapi.authentication_registry', '@ConnectHolland\DockerHubApiBundle\Plugins\FixManifestResponseContentTypePlugin']

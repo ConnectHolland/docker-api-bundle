@@ -14,6 +14,23 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
     /**
      * Returns all repositories from the system that the user has access to.
      *
+     * @param string $user  User of the repository to fetch
+     * @param string $name  Name of the repository to fetch
+     * @param string $tag   Tag of the manifest to fetch
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @throws \ConnectHolland\DockerHubApiBundle\Api\Exception\GetManifestsUnauthorizedException
+     *
+     * @return \ConnectHolland\DockerHubApiBundle\Api\Model\Manifests|\ConnectHolland\DockerHubApiBundle\Api\Model\Error|\Psr\Http\Message\ResponseInterface|null
+     */
+    public function getManifests(string $user, string $name, string $tag, string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executePsr7Endpoint(new \ConnectHolland\DockerHubApiBundle\Api\Endpoint\GetManifests($user, $name, $tag), $fetch);
+    }
+
+    /**
+     * Returns all repositories from the system that the user has access to.
+     *
      * @param array $queryParameters {
      *
      *     @var string $query query to filter by

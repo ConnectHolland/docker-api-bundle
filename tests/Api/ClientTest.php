@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace ConnectHolland\DockerHubApiBundle\Tests\Api;
 
 use ConnectHolland\DockerHubApiBundle\Api\Client;
+use ConnectHolland\DockerHubApiBundle\Api\Model\Manifests;
 use ConnectHolland\DockerHubApiBundle\Api\Model\Repository;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
@@ -24,6 +25,13 @@ class ClientTest extends KernelTestCase
     {
         $kernel       = self::bootKernel();
         $this->client = $kernel->getContainer()->get(Client::class);
+    }
+
+    public function testGetManifests()
+    {
+        $manifests = $this->client->getManifests('library', 'ubuntu', 'latest');
+
+        $this->assertInstanceOf(Manifests::class, $manifests);
     }
 
     public function testFindRepositories()
