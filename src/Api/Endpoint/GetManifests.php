@@ -3,11 +3,11 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the docker-hub-api bundle package.
+ * This file is part of the docker-api bundle package.
  * (c) Connect Holland.
  */
 
-namespace ConnectHolland\DockerHubApiBundle\Api\Endpoint;
+namespace ConnectHolland\DockerApiBundle\Api\Endpoint;
 
 class GetManifests extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \Jane\OpenApiRuntime\Client\Psr7Endpoint
 {
@@ -54,20 +54,20 @@ class GetManifests extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \
     /**
      * {@inheritdoc}
      *
-     * @throws \ConnectHolland\DockerHubApiBundle\Api\Exception\GetManifestsUnauthorizedException
+     * @throws \ConnectHolland\DockerApiBundle\Api\Exception\GetManifestsUnauthorizedException
      *
-     * @return \ConnectHolland\DockerHubApiBundle\Api\Model\Manifests|\ConnectHolland\DockerHubApiBundle\Api\Model\Error|null
+     * @return \ConnectHolland\DockerApiBundle\Api\Model\Manifests|\ConnectHolland\DockerApiBundle\Api\Model\Error|null
      */
     protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
         if (200 === $status && mb_strpos($contentType, 'application/json') !== false) {
-            return $serializer->deserialize($body, 'ConnectHolland\\DockerHubApiBundle\\Api\\Model\\Manifests', 'json');
+            return $serializer->deserialize($body, 'ConnectHolland\\DockerApiBundle\\Api\\Model\\Manifests', 'json');
         }
         if (401 === $status && mb_strpos($contentType, 'application/json') !== false) {
-            throw new \ConnectHolland\DockerHubApiBundle\Api\Exception\GetManifestsUnauthorizedException($serializer->deserialize($body, 'ConnectHolland\\DockerHubApiBundle\\Api\\Model\\Unauthorized', 'json'));
+            throw new \ConnectHolland\DockerApiBundle\Api\Exception\GetManifestsUnauthorizedException($serializer->deserialize($body, 'ConnectHolland\\DockerApiBundle\\Api\\Model\\Unauthorized', 'json'));
         }
         if (mb_strpos($contentType, 'application/json') !== false) {
-            return $serializer->deserialize($body, 'ConnectHolland\\DockerHubApiBundle\\Api\\Model\\Error', 'json');
+            return $serializer->deserialize($body, 'ConnectHolland\\DockerApiBundle\\Api\\Model\\Error', 'json');
         }
     }
 

@@ -3,11 +3,11 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the docker-hub-api bundle package.
+ * This file is part of the docker-api bundle package.
  * (c) Connect Holland.
  */
 
-namespace ConnectHolland\DockerHubApiBundle\Api\Normalizer;
+namespace ConnectHolland\DockerApiBundle\Api\Normalizer;
 
 use Jane\JsonSchemaRuntime\Normalizer\CheckArray;
 use Jane\JsonSchemaRuntime\Reference;
@@ -26,12 +26,12 @@ class FSLayerNormalizer implements DenormalizerInterface, NormalizerInterface, D
 
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'ConnectHolland\\DockerHubApiBundle\\Api\\Model\\FSLayer';
+        return $type === 'ConnectHolland\\DockerApiBundle\\Api\\Model\\FSLayer';
     }
 
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'ConnectHolland\\DockerHubApiBundle\\Api\\Model\\FSLayer';
+        return is_object($data) && get_class($data) === 'ConnectHolland\\DockerApiBundle\\Api\\Model\\FSLayer';
     }
 
     public function denormalize($data, $class, $format = null, array $context = [])
@@ -42,7 +42,7 @@ class FSLayerNormalizer implements DenormalizerInterface, NormalizerInterface, D
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \ConnectHolland\DockerHubApiBundle\Api\Model\FSLayer();
+        $object = new \ConnectHolland\DockerApiBundle\Api\Model\FSLayer();
         if (\array_key_exists('blobSum', $data)) {
             $object->setBlobSum($data['blobSum']);
         }

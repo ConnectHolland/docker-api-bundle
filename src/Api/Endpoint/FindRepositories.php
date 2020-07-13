@@ -3,11 +3,11 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the docker-hub-api bundle package.
+ * This file is part of the docker-api bundle package.
  * (c) Connect Holland.
  */
 
-namespace ConnectHolland\DockerHubApiBundle\Api\Endpoint;
+namespace ConnectHolland\DockerApiBundle\Api\Endpoint;
 
 class FindRepositories extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \Jane\OpenApiRuntime\Client\Psr7Endpoint
 {
@@ -64,15 +64,15 @@ class FindRepositories extends \Jane\OpenApiRuntime\Client\BaseEndpoint implemen
     /**
      * {@inheritdoc}
      *
-     * @return \ConnectHolland\DockerHubApiBundle\Api\Model\RepositorySearchResults|\ConnectHolland\DockerHubApiBundle\Api\Model\Error|null
+     * @return \ConnectHolland\DockerApiBundle\Api\Model\RepositorySearchResults|\ConnectHolland\DockerApiBundle\Api\Model\Error|null
      */
     protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
         if (200 === $status && mb_strpos($contentType, 'application/json') !== false) {
-            return $serializer->deserialize($body, 'ConnectHolland\\DockerHubApiBundle\\Api\\Model\\RepositorySearchResults', 'json');
+            return $serializer->deserialize($body, 'ConnectHolland\\DockerApiBundle\\Api\\Model\\RepositorySearchResults', 'json');
         }
         if (mb_strpos($contentType, 'application/json') !== false) {
-            return $serializer->deserialize($body, 'ConnectHolland\\DockerHubApiBundle\\Api\\Model\\Error', 'json');
+            return $serializer->deserialize($body, 'ConnectHolland\\DockerApiBundle\\Api\\Model\\Error', 'json');
         }
     }
 

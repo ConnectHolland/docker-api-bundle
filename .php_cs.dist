@@ -21,7 +21,7 @@ return PhpCsFixer\Config::create()
         ],
         'header_comment'         => [
             'header' => <<<EOH
-This file is part of the docker-hub-api bundle package.
+This file is part of the docker-api bundle package.
 (c) Connect Holland.
 EOH
                 ,

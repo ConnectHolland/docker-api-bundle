@@ -3,11 +3,11 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the docker-hub-api bundle package.
+ * This file is part of the docker-api bundle package.
  * (c) Connect Holland.
  */
 
-namespace ConnectHolland\DockerHubApiBundle\Api\Normalizer;
+namespace ConnectHolland\DockerApiBundle\Api\Normalizer;
 
 use Jane\JsonSchemaRuntime\Normalizer\CheckArray;
 use Jane\JsonSchemaRuntime\Reference;
@@ -26,12 +26,12 @@ class HistoryNormalizer implements DenormalizerInterface, NormalizerInterface, D
 
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'ConnectHolland\\DockerHubApiBundle\\Api\\Model\\History';
+        return $type === 'ConnectHolland\\DockerApiBundle\\Api\\Model\\History';
     }
 
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'ConnectHolland\\DockerHubApiBundle\\Api\\Model\\History';
+        return is_object($data) && get_class($data) === 'ConnectHolland\\DockerApiBundle\\Api\\Model\\History';
     }
 
     public function denormalize($data, $class, $format = null, array $context = [])
@@ -42,7 +42,7 @@ class HistoryNormalizer implements DenormalizerInterface, NormalizerInterface, D
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \ConnectHolland\DockerHubApiBundle\Api\Model\History();
+        $object = new \ConnectHolland\DockerApiBundle\Api\Model\History();
         if (\array_key_exists('v1Compatibility', $data)) {
             $object->setV1Compatibility($data['v1Compatibility']);
         }

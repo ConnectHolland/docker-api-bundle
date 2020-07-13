@@ -3,11 +3,11 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the docker-hub-api bundle package.
+ * This file is part of the docker-api bundle package.
  * (c) Connect Holland.
  */
 
-namespace ConnectHolland\DockerHubApiBundle\Api\Normalizer;
+namespace ConnectHolland\DockerApiBundle\Api\Normalizer;
 
 use Jane\JsonSchemaRuntime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -22,7 +22,7 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    protected $normalizers      = ['ConnectHolland\\DockerHubApiBundle\\Api\\Model\\RepositorySearchResults' => 'ConnectHolland\\DockerHubApiBundle\\Api\\Normalizer\\RepositorySearchResultsNormalizer', 'ConnectHolland\\DockerHubApiBundle\\Api\\Model\\Manifests' => 'ConnectHolland\\DockerHubApiBundle\\Api\\Normalizer\\ManifestsNormalizer', 'ConnectHolland\\DockerHubApiBundle\\Api\\Model\\History' => 'ConnectHolland\\DockerHubApiBundle\\Api\\Normalizer\\HistoryNormalizer', 'ConnectHolland\\DockerHubApiBundle\\Api\\Model\\FSLayer' => 'ConnectHolland\\DockerHubApiBundle\\Api\\Normalizer\\FSLayerNormalizer', 'ConnectHolland\\DockerHubApiBundle\\Api\\Model\\Signature' => 'ConnectHolland\\DockerHubApiBundle\\Api\\Normalizer\\SignatureNormalizer', 'ConnectHolland\\DockerHubApiBundle\\Api\\Model\\RepositorySearch' => 'ConnectHolland\\DockerHubApiBundle\\Api\\Normalizer\\RepositorySearchNormalizer', 'ConnectHolland\\DockerHubApiBundle\\Api\\Model\\ArrayOfRepositories' => 'ConnectHolland\\DockerHubApiBundle\\Api\\Normalizer\\ArrayOfRepositoriesNormalizer', 'ConnectHolland\\DockerHubApiBundle\\Api\\Model\\Repository' => 'ConnectHolland\\DockerHubApiBundle\\Api\\Normalizer\\RepositoryNormalizer', 'ConnectHolland\\DockerHubApiBundle\\Api\\Model\\RepositoryPermissions' => 'ConnectHolland\\DockerHubApiBundle\\Api\\Normalizer\\RepositoryPermissionsNormalizer', 'ConnectHolland\\DockerHubApiBundle\\Api\\Model\\Error' => 'ConnectHolland\\DockerHubApiBundle\\Api\\Normalizer\\ErrorNormalizer', 'ConnectHolland\\DockerHubApiBundle\\Api\\Model\\Unauthorized' => 'ConnectHolland\\DockerHubApiBundle\\Api\\Normalizer\\UnauthorizedNormalizer', 'ConnectHolland\\DockerHubApiBundle\\Api\\Model\\UnauthorizedErrors' => 'ConnectHolland\\DockerHubApiBundle\\Api\\Normalizer\\UnauthorizedErrorsNormalizer', '\\Jane\\JsonSchemaRuntime\\Reference' => '\\Jane\\JsonSchemaRuntime\\Normalizer\\ReferenceNormalizer'];
+    protected $normalizers      = ['ConnectHolland\\DockerApiBundle\\Api\\Model\\RepositorySearchResults' => 'ConnectHolland\\DockerApiBundle\\Api\\Normalizer\\RepositorySearchResultsNormalizer', 'ConnectHolland\\DockerApiBundle\\Api\\Model\\Manifests' => 'ConnectHolland\\DockerApiBundle\\Api\\Normalizer\\ManifestsNormalizer', 'ConnectHolland\\DockerApiBundle\\Api\\Model\\History' => 'ConnectHolland\\DockerApiBundle\\Api\\Normalizer\\HistoryNormalizer', 'ConnectHolland\\DockerApiBundle\\Api\\Model\\FSLayer' => 'ConnectHolland\\DockerApiBundle\\Api\\Normalizer\\FSLayerNormalizer', 'ConnectHolland\\DockerApiBundle\\Api\\Model\\Signature' => 'ConnectHolland\\DockerApiBundle\\Api\\Normalizer\\SignatureNormalizer', 'ConnectHolland\\DockerApiBundle\\Api\\Model\\RepositorySearch' => 'ConnectHolland\\DockerApiBundle\\Api\\Normalizer\\RepositorySearchNormalizer', 'ConnectHolland\\DockerApiBundle\\Api\\Model\\ArrayOfRepositories' => 'ConnectHolland\\DockerApiBundle\\Api\\Normalizer\\ArrayOfRepositoriesNormalizer', 'ConnectHolland\\DockerApiBundle\\Api\\Model\\Repository' => 'ConnectHolland\\DockerApiBundle\\Api\\Normalizer\\RepositoryNormalizer', 'ConnectHolland\\DockerApiBundle\\Api\\Model\\RepositoryPermissions' => 'ConnectHolland\\DockerApiBundle\\Api\\Normalizer\\RepositoryPermissionsNormalizer', 'ConnectHolland\\DockerApiBundle\\Api\\Model\\Error' => 'ConnectHolland\\DockerApiBundle\\Api\\Normalizer\\ErrorNormalizer', 'ConnectHolland\\DockerApiBundle\\Api\\Model\\Unauthorized' => 'ConnectHolland\\DockerApiBundle\\Api\\Normalizer\\UnauthorizedNormalizer', 'ConnectHolland\\DockerApiBundle\\Api\\Model\\UnauthorizedErrors' => 'ConnectHolland\\DockerApiBundle\\Api\\Normalizer\\UnauthorizedErrorsNormalizer', '\\Jane\\JsonSchemaRuntime\\Reference' => '\\Jane\\JsonSchemaRuntime\\Normalizer\\ReferenceNormalizer'];
     protected $normalizersCache = [];
 
     public function supportsDenormalization($data, $type, $format = null)

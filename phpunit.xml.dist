@@ -8,18 +8,18 @@
 
     <php>
         <ini name="error_reporting" value="-1" />
-        <env name="KERNEL_CLASS" value="ConnectHolland\DockerHubApiBundle\Tests\TestKernel" />
+        <env name="KERNEL_CLASS" value="ConnectHolland\DockerApiBundle\Tests\TestKernel" />
         <env name="SYMFONY_DEPRECATIONS_HELPER" value="weak"/>
         <env name="APP_ENV" value="test" />
         <env name="APP_DEBUG" value="1" />
-        <env name="DOCKER_HUB_API_USERNAME" value="username" />
-        <env name="DOCKER_HUB_API_TOKEN" value="password" />
+        <env name="DOCKER_API_USERNAME" value="username" />
+        <env name="DOCKER_API_TOKEN" value="password" />
         <env name="APP_SECRET" value="s$cretf0rt3st" />
         <env name="SHELL_VERBOSITY" value="-1" />
     </php>
 
     <testsuites>
-        <testsuite name="Docker Hub Api bundle test suite">
+        <testsuite name="Docker Api bundle test suite">
             <directory suffix="Test.php">./tests</directory>
         </testsuite>
     </testsuites>
@@ -28,7 +28,7 @@
         <whitelist>
             <directory>./</directory>
             <exclude>
-                <file>./src/ConnecthollandDockerHubApiBundle.php</file>
+                <file>./src/ConnecthollandDockerApiBundle.php</file>
                 <directory>./src/Api/</directory>
                 <directory>./src/Resources/</directory>
                 <directory>./var</directory>

@@ -3,11 +3,11 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the docker-hub-api bundle package.
+ * This file is part of the docker-api bundle package.
  * (c) Connect Holland.
  */
 
-namespace ConnectHolland\DockerHubApiBundle\Tests;
+namespace ConnectHolland\DockerApiBundle\Tests;
 
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\HttpKernel\Kernel;
@@ -17,7 +17,7 @@ final class TestKernel extends Kernel
     public function registerBundles()
     {
         $bundles = [
-            new \ConnectHolland\DockerHubApiBundle\ConnecthollandDockerHubApiBundle(),
+            new \ConnectHolland\DockerApiBundle\ConnecthollandDockerApiBundle(),
         ];
 
         return $bundles;

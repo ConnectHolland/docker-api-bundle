@@ -1,7 +1,7 @@
 {
-    "name": "connectholland/docker-hub-api-bundle",
+    "name": "connectholland/docker-api-bundle",
     "type": "symfony-bundle",
-    "description": "Docker Hub API bundle for Symfony 4/5 projects",
+    "description": "Docker API bundle for Symfony 4/5 projects",
     "license": "MIT",
     "authors": [
         {
@@ -46,12 +46,12 @@
     },
     "autoload": {
         "psr-4": {
-            "ConnectHolland\\DockerHubApiBundle\\": "src"
+            "ConnectHolland\\DockerApiBundle\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "ConnectHolland\\DockerHubApiBundle\\Tests\\": "tests"
+            "ConnectHolland\\DockerApiBundle\\Tests\\": "tests"
         }
     },
     "minimum-stability": "dev",

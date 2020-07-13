@@ -3,15 +3,15 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the docker-hub-api bundle package.
+ * This file is part of the docker-api bundle package.
  * (c) Connect Holland.
  */
 
-namespace ConnectHolland\DockerHubApiBundle\Tests\Api;
+namespace ConnectHolland\DockerApiBundle\Tests\Api;
 
-use ConnectHolland\DockerHubApiBundle\Api\Client;
-use ConnectHolland\DockerHubApiBundle\Api\Model\Manifests;
-use ConnectHolland\DockerHubApiBundle\Api\Model\Repository;
+use ConnectHolland\DockerApiBundle\Api\Client;
+use ConnectHolland\DockerApiBundle\Api\Model\Manifests;
+use ConnectHolland\DockerApiBundle\Api\Model\Repository;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class ClientTest extends KernelTestCase

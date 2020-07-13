@@ -6,29 +6,29 @@ services:
         autoconfigure: false
         public: false
 
-    dockerhubapi.authentication_registry:
+    dockerapi.authentication_registry:
         class: 'Jane\OpenApiRuntime\Client\Plugin\AuthenticationRegistry'
         arguments:
             $authenticationPlugins:
-                - '@ConnectHolland\DockerHubApiBundle\Authentication\HubAuthAuthentication'
-                - '@ConnectHolland\DockerHubApiBundle\Authentication\RegistryAuthAuthentication'
+                - '@ConnectHolland\DockerApiBundle\Authentication\HubAuthAuthentication'
+                - '@ConnectHolland\DockerApiBundle\Authentication\RegistryAuthAuthentication'
 
-    ConnectHolland\DockerHubApiBundle\Authentication\HubAuthAuthentication:
+    ConnectHolland\DockerApiBundle\Authentication\HubAuthAuthentication:
         arguments:
-            $username: '%env(default:dockerhubapi.username:DOCKER_HUB_API_USERNAME)%'
-            $token: '%env(default:dockerhubapi.token:DOCKER_HUB_API_TOKEN)%'
+            $username: '%env(default:dockerapi.username:DOCKER_API_USERNAME)%'
+            $token: '%env(default:dockerapi.token:DOCKER_API_TOKEN)%'
 
-    ConnectHolland\DockerHubApiBundle\Plugins\FixManifestResponseContentTypePlugin: ~
+    ConnectHolland\DockerApiBundle\Plugins\FixManifestResponseContentTypePlugin: ~
 
-    ConnectHolland\DockerHubApiBundle\Authentication\RegistryAuthAuthentication:
+    ConnectHolland\DockerApiBundle\Authentication\RegistryAuthAuthentication:
         arguments:
-            $username: '%env(default:dockerhubapi.username:DOCKER_HUB_API_USERNAME)%'
-            $token: '%env(default:dockerhubapi.token:DOCKER_HUB_API_TOKEN)%'
+            $username: '%env(default:dockerapi.username:DOCKER_API_USERNAME)%'
+            $token: '%env(default:dockerapi.token:DOCKER_API_TOKEN)%'
 
-    ConnectHolland\DockerHubApiBundle\Api\Client:
+    ConnectHolland\DockerApiBundle\Api\Client:
         public: true
         lazy: true
-        factory: [ConnectHolland\DockerHubApiBundle\Api\Client, create]
+        factory: [ConnectHolland\DockerApiBundle\Api\Client, create]
         arguments:
             $httpClient: ~
-            $additionalPlugins: ['@dockerhubapi.authentication_registry', '@ConnectHolland\DockerHubApiBundle\Plugins\FixManifestResponseContentTypePlugin']
+            $additionalPlugins: ['@dockerapi.authentication_registry', '@ConnectHolland\DockerApiBundle\Plugins\FixManifestResponseContentTypePlugin']

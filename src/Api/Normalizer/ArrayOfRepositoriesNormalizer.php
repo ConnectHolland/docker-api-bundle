@@ -3,11 +3,11 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the docker-hub-api bundle package.
+ * This file is part of the docker-api bundle package.
  * (c) Connect Holland.
  */
 
-namespace ConnectHolland\DockerHubApiBundle\Api\Normalizer;
+namespace ConnectHolland\DockerApiBundle\Api\Normalizer;
 
 use Jane\JsonSchemaRuntime\Normalizer\CheckArray;
 use Jane\JsonSchemaRuntime\Reference;
@@ -26,12 +26,12 @@ class ArrayOfRepositoriesNormalizer implements DenormalizerInterface, Normalizer
 
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'ConnectHolland\\DockerHubApiBundle\\Api\\Model\\ArrayOfRepositories';
+        return $type === 'ConnectHolland\\DockerApiBundle\\Api\\Model\\ArrayOfRepositories';
     }
 
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'ConnectHolland\\DockerHubApiBundle\\Api\\Model\\ArrayOfRepositories';
+        return is_object($data) && get_class($data) === 'ConnectHolland\\DockerApiBundle\\Api\\Model\\ArrayOfRepositories';
     }
 
     public function denormalize($data, $class, $format = null, array $context = [])
@@ -42,11 +42,11 @@ class ArrayOfRepositoriesNormalizer implements DenormalizerInterface, Normalizer
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \ConnectHolland\DockerHubApiBundle\Api\Model\ArrayOfRepositories();
+        $object = new \ConnectHolland\DockerApiBundle\Api\Model\ArrayOfRepositories();
         if (\array_key_exists('results', $data)) {
             $values = [];
             foreach ($data['results'] as $value) {
-                $values[] = $this->denormalizer->denormalize($value, 'ConnectHolland\\DockerHubApiBundle\\Api\\Model\\Repository', 'json', $context);
+                $values[] = $this->denormalizer->denormalize($value, 'ConnectHolland\\DockerApiBundle\\Api\\Model\\Repository', 'json', $context);
             }
             $object->setResults($values);
         }

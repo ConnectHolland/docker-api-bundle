@@ -1,6 +1,6 @@
 parameters:
     kernel.secret: '%env(APP_SECRET)%'
 
-connectholland_docker_hub_api:
-    username: '%env(DOCKER_HUB_API_USERNAME)%'
-    token: '%env(DOCKER_HUB_API_TOKEN)%'
+connectholland_docker_api:
+    username: '%env(DOCKER_API_USERNAME)%'
+    token: '%env(DOCKER_API_TOKEN)%'

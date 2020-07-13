@@ -3,11 +3,11 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the docker-hub-api bundle package.
+ * This file is part of the docker-api bundle package.
  * (c) Connect Holland.
  */
 
-namespace ConnectHolland\DockerHubApiBundle\Api\Normalizer;
+namespace ConnectHolland\DockerApiBundle\Api\Normalizer;
 
 use Jane\JsonSchemaRuntime\Normalizer\CheckArray;
 use Jane\JsonSchemaRuntime\Reference;
@@ -26,12 +26,12 @@ class UnauthorizedNormalizer implements DenormalizerInterface, NormalizerInterfa
 
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $type === 'ConnectHolland\\DockerHubApiBundle\\Api\\Model\\Unauthorized';
+        return $type === 'ConnectHolland\\DockerApiBundle\\Api\\Model\\Unauthorized';
     }
 
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && get_class($data) === 'ConnectHolland\\DockerHubApiBundle\\Api\\Model\\Unauthorized';
+        return is_object($data) && get_class($data) === 'ConnectHolland\\DockerApiBundle\\Api\\Model\\Unauthorized';
     }
 
     public function denormalize($data, $class, $format = null, array $context = [])
@@ -42,9 +42,9 @@ class UnauthorizedNormalizer implements DenormalizerInterface, NormalizerInterfa
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \ConnectHolland\DockerHubApiBundle\Api\Model\Unauthorized();
+        $object = new \ConnectHolland\DockerApiBundle\Api\Model\Unauthorized();
         if (\array_key_exists('errors', $data)) {
-            $object->setErrors($this->denormalizer->denormalize($data['errors'], 'ConnectHolland\\DockerHubApiBundle\\Api\\Model\\UnauthorizedErrors', 'json', $context));
+            $object->setErrors($this->denormalizer->denormalize($data['errors'], 'ConnectHolland\\DockerApiBundle\\Api\\Model\\UnauthorizedErrors', 'json', $context));
         }
 
         return $object;

@@ -3,18 +3,18 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the docker-hub-api bundle package.
+ * This file is part of the docker-api bundle package.
  * (c) Connect Holland.
  */
 
-namespace ConnectHolland\DockerHubApiBundle\DependencyInjection;
+namespace ConnectHolland\DockerApiBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 final class Configuration implements ConfigurationInterface
 {
-    public const CONFIG_ROOT_KEY = 'connectholland_docker_hub_api';
+    public const CONFIG_ROOT_KEY = 'connectholland_docker_api';
 
     /**
      * {@inheritdoc}
