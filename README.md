@@ -2,7 +2,6 @@
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ConnectHolland/docker-api-bundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ConnectHolland/docker-api-bundle/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/ConnectHolland/docker-api-bundle/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/ConnectHolland/docker-api-bundle/?branch=master)
-[![Build Status](https://scrutinizer-ci.com/g/ConnectHolland/docker-api-bundle/badges/build.png?b=master)](https://scrutinizer-ci.com/g/ConnectHolland/docker-api-bundle/build-status/master)
 
 Docker API bundle to connect to hub.docker.com/v2/ and registry-1.docker.io/v2/ for Symfony 4/5 projects
 
